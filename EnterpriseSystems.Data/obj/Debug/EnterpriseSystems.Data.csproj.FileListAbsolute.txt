@@ -1,0 +1,7 @@
+C:\Users\jmcli\Desktop\415 Homework\HW2 Template\EnterpriseSystems.Data\bin\Debug\EnterpriseSystems.Data.dll
+C:\Users\jmcli\Desktop\415 Homework\HW2 Template\EnterpriseSystems.Data\bin\Debug\EnterpriseSystems.Data.pdb
+C:\Users\jmcli\Desktop\415 Homework\HW2 Template\EnterpriseSystems.Data\bin\Debug\Moq.dll
+C:\Users\jmcli\Desktop\415 Homework\HW2 Template\EnterpriseSystems.Data\bin\Debug\Moq.xml
+C:\Users\jmcli\Desktop\415 Homework\HW2 Template\EnterpriseSystems.Data\obj\Debug\EnterpriseSystems.Data.csprojResolveAssemblyReference.cache
+C:\Users\jmcli\Desktop\415 Homework\HW2 Template\EnterpriseSystems.Data\obj\Debug\EnterpriseSystems.Data.dll
+C:\Users\jmcli\Desktop\415 Homework\HW2 Template\EnterpriseSystems.Data\obj\Debug\EnterpriseSystems.Data.pdb

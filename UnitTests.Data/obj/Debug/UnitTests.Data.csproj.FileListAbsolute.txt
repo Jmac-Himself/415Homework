@@ -1,0 +1,9 @@
+C:\Users\jmcli\Desktop\415 Homework\HW2 Template\UnitTests.Data\obj\Debug\UnitTests.Data.csprojResolveAssemblyReference.cache
+C:\Users\jmcli\Desktop\415 Homework\HW2 Template\UnitTests.Data\bin\Debug\UnitTests.Data.dll
+C:\Users\jmcli\Desktop\415 Homework\HW2 Template\UnitTests.Data\bin\Debug\UnitTests.Data.pdb
+C:\Users\jmcli\Desktop\415 Homework\HW2 Template\UnitTests.Data\bin\Debug\EnterpriseSystems.Data.dll
+C:\Users\jmcli\Desktop\415 Homework\HW2 Template\UnitTests.Data\bin\Debug\Moq.dll
+C:\Users\jmcli\Desktop\415 Homework\HW2 Template\UnitTests.Data\bin\Debug\EnterpriseSystems.Data.pdb
+C:\Users\jmcli\Desktop\415 Homework\HW2 Template\UnitTests.Data\bin\Debug\Moq.xml
+C:\Users\jmcli\Desktop\415 Homework\HW2 Template\UnitTests.Data\obj\Debug\UnitTests.Data.dll
+C:\Users\jmcli\Desktop\415 Homework\HW2 Template\UnitTests.Data\obj\Debug\UnitTests.Data.pdb
