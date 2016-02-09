@@ -1,9 +1,9 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using EnterpriseSystems.Data.Mappers;
 using EnterpriseSystems.Data.DAO;
-using EnterpriseSystems.Data.Hydraters;
-using EnterpriseSystems.Data.Model.Entities;
 using Moq;
+using EnterpriseSystems.Data.Hydraters;
+using EnterpriseSystems.Infrastructure.Model.Entities;
 
 namespace UnitTests.Data.Mappers
 {

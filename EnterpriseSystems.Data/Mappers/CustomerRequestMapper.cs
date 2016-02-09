@@ -1,6 +1,6 @@
 ﻿using EnterpriseSystems.Data.DAO;
+using EnterpriseSystems.Infrastructure.Model.Entities;
 using EnterpriseSystems.Data.Hydraters;
-using EnterpriseSystems.Data.Model.Entities;
 using System;
 using System.Collections.Generic;
 

@@ -1,4 +1,4 @@
-﻿using EnterpriseSystems.Data.Model.Entities;
+﻿using EnterpriseSystems.Infrastructure.Model.Entities;
 using System;
 using System.Collections.Generic;
 using System.Data;

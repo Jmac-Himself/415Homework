@@ -86,10 +86,10 @@ namespace UnitTests.Data.Hydraters
             Assert.AreEqual("BusinessEntityName1", secondElement.BusinessEntityKey);
             Assert.AreEqual("TypeCode1", secondElement.TypeCode);
             Assert.AreEqual("ConsumerClassificationType1", secondElement.ConsumerClassificationType);
-            Assert.AreEqual(new DateTime(2), secondElement.CreatedDate);
+            Assert.AreEqual(new DateTime(3), secondElement.CreatedDate);
             Assert.AreEqual("CreatedUserId1", secondElement.CreatedUserId);
             Assert.AreEqual("CreatedProgramCode1", secondElement.CreatedProgramCode);
-            Assert.AreEqual(new DateTime(3), secondElement.LastUpdatedDate);
+            Assert.AreEqual(new DateTime(4), secondElement.LastUpdatedDate);
             Assert.AreEqual("LastUpdatedUserId1", secondElement.LastUpdatedUserId);
             Assert.AreEqual("LastUpdatedProgramCode1", secondElement.LastUpdatedProgramCode);
         }
