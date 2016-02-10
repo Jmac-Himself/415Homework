@@ -3,6 +3,7 @@ using EnterpriseSystems.Infrastructure.Model.Entities;
 using EnterpriseSystems.Data.Hydraters;
 using System;
 using System.Collections.Generic;
+using System.Data;
 
 namespace EnterpriseSystems.Data.Mappers
 {
@@ -10,19 +11,28 @@ namespace EnterpriseSystems.Data.Mappers
     {
         private IDatabase Database { get; set; }
         private IHydrater<AppointmentVO> AppointmentHydrater { get; set; }
+        IQuery NewQuery;
+        DataTable dataTable;
 
         public AppointmentMapper(IDatabase database, IHydrater<AppointmentVO> appointmentHydrater)
         {
             Database = database;
             AppointmentHydrater = appointmentHydrater;
         }
-        public IEnumerable<AppointmentVO> GetAppointmentsByCustomerRequest(AppointmentVO Appointment)
+        public IEnumerable<AppointmentVO> GetAppointmentsByCustomerRequest(CustomerRequestVO CustomerRequest)
         {
-            throw new NotImplementedException();
+            Database.CreateQuery("SELECT * FROM REQ_ETY_SCH WHERE ETY_NM = 'CUS_REQ' AND ETY_KEY_I = @CUS_REQ_I");
+            NewQuery.AddParameter(CustomerRequest, "@CUS_REQ_I");
+            dataTable = Database.RunSelect(NewQuery);
+            return AppointmentHydrater.Hydrate(dataTable);
+
         }
-        public AppointmentVO GetAppointmentsByStop(AppointmentVO Appointment)
+        public IEnumerable<AppointmentVO> GetAppointmentsByStop(StopVO Stop)
         {
-            throw new NotImplementedException();
+            Database.CreateQuery("SELECT * FROM REQ_ETY_SCH WHERE ETY_NM = 'REQ_ETY_OGN' AND ETY_KEY_I = @REQ_ETY_OGN_I");
+            NewQuery.AddParameter(Stop, "@REQ_ETY_OGN_I");
+            dataTable = Database.RunSelect(NewQuery);
+            return AppointmentHydrater.Hydrate(dataTable);
         }
     }
 }

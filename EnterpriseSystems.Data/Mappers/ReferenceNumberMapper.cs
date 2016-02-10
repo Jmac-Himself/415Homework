@@ -3,6 +3,7 @@ using EnterpriseSystems.Infrastructure.Model.Entities;
 using EnterpriseSystems.Data.Hydraters;
 using System;
 using System.Collections.Generic;
+using System.Data;
 
 namespace EnterpriseSystems.Data.Mappers
 {
@@ -10,6 +11,8 @@ namespace EnterpriseSystems.Data.Mappers
     {
         private IDatabase Database { get; set; }
         private IHydrater<ReferenceNumberVO> ReferenceNumberHydrater { get; set; }
+        IQuery NewQuery;
+        DataTable dataTable;
 
         public ReferenceNumberMapper(IDatabase database, IHydrater<ReferenceNumberVO> referenceNumberHydrater)
         {
@@ -17,9 +20,12 @@ namespace EnterpriseSystems.Data.Mappers
             ReferenceNumberHydrater = referenceNumberHydrater;
         }
 
-        public ReferenceNumberVO GetReferenceNumbersByCustomerRequest(ReferenceNumberVO ReferenceNumber)
+        public IEnumerable<ReferenceNumberVO> GetReferenceNumbersByCustomerRequest(CustomerRequestVO customerRequest)
         {
-            throw new NotImplementedException();
+            Database.CreateQuery("SELECT * FROM REQ_ETY_REF_NBR WHERE ETY_NM = 'CUS_REQ' AND ETY_KEY_I = @CUS_REQ_I");
+            NewQuery.AddParameter(customerRequest, "@CUS_REQ_I");
+            dataTable = Database.RunSelect(NewQuery);
+            return ReferenceNumberHydrater.Hydrate(dataTable);
         }
     }
 }

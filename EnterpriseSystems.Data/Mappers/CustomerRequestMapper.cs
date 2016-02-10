@@ -3,6 +3,7 @@ using EnterpriseSystems.Infrastructure.Model.Entities;
 using EnterpriseSystems.Data.Hydraters;
 using System;
 using System.Collections.Generic;
+using System.Data;
 
 namespace EnterpriseSystems.Data.Mappers
 {
@@ -10,6 +11,8 @@ namespace EnterpriseSystems.Data.Mappers
     {
         private IDatabase Database { get; set; }
         private IHydrater<CustomerRequestVO> CustomerRequestHydrater { get; set; }
+        IQuery NewQuery;
+        DataTable dataTable;
 
         public CustomerRequestMapper(IDatabase database, IHydrater<CustomerRequestVO> customerRequestHydrater)
         {
@@ -17,19 +20,31 @@ namespace EnterpriseSystems.Data.Mappers
             CustomerRequestHydrater = customerRequestHydrater;
         }
 
-        public CustomerRequestVO GetCustomerRequestByIdentity(CustomerRequestVO customerRequest)
+        public IEnumerable<CustomerRequestVO> GetCustomerRequestByIdentity(int CustomerRequestIdentity)
         {
-            throw new NotImplementedException();
+            Database.CreateQuery("SELECT * FROM CUS_REQ WHERE CUS_REQ_I = @CUS_REQ_I");
+            NewQuery.AddParameter(CustomerRequestIdentity, "CUS_REQ_I");
+            dataTable = Database.RunSelect(NewQuery);
+            return CustomerRequestHydrater.Hydrate(dataTable);
         }
 
-        public IEnumerable<CustomerRequestVO> GetCustomerRequestsByReferenceNumber(CustomerRequestVO customerRequest)
+        public IEnumerable<CustomerRequestVO> GetCustomerRequestsByReferenceNumber(string ReferenceNumber)
         {
-            throw new NotImplementedException();
+            Database.CreateQuery("SELECT A.* FROM CUS_REQ A, REQ_ETY_REF_NBR B WHERE "
+                                    + "B.ETY_NM = 'CUS_REQ' AND B.ETY_KEY_I = A.CUS_REQ_I AND "
+                                    + "B.REF_NBR = @REF_NBR");
+            NewQuery.AddParameter(ReferenceNumber, "@REF_NBR");
+            dataTable = Database.RunSelect(NewQuery);
+            return CustomerRequestHydrater.Hydrate(dataTable);
         }
 
-        public IEnumerable<CustomerRequestVO> GetCustomerRequestsByReferenceNumberAndBusinessName(CustomerRequestVO customerRequest)
+        public IEnumerable<CustomerRequestVO> GetCustomerRequestsByReferenceNumberAndBusinessName(string referenceNumber, string businessName)
         {
-            throw new NotImplementedException();
+            Database.CreateQuery("");
+            NewQuery.AddParameter(businessName, "@BUS_UNT_KEY_CH");
+            NewQuery.AddParameter(referenceNumber, "@REF_NBR");
+            dataTable = Database.RunSelect(NewQuery);
+            return CustomerRequestHydrater.Hydrate(dataTable);
         }
     }
 }

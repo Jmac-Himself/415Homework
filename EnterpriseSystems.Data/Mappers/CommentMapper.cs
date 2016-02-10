@@ -2,6 +2,8 @@
 using EnterpriseSystems.Infrastructure.Model.Entities;
 using EnterpriseSystems.Data.Hydraters;
 using System;
+using System.Data;
+using System.Collections.Generic;
 
 namespace EnterpriseSystems.Data.Mappers
 {
@@ -9,6 +11,8 @@ namespace EnterpriseSystems.Data.Mappers
     {
         private IDatabase Database { get; set; }
         private IHydrater<CommentVO> CommentHydrater { get; set; }
+        IQuery NewQuery;
+        DataTable dataTable;
 
         public CommentMapper(IDatabase database, IHydrater<CommentVO> commentHydrater)
         {
@@ -16,13 +20,19 @@ namespace EnterpriseSystems.Data.Mappers
             CommentHydrater = commentHydrater;
         }
 
-        public CommentVO GetCommentsByCustomerRequest(CommentVO Comment)
+        public IEnumerable<CommentVO> GetCommentsByCustomerRequest(CustomerRequestVO customerRequest)
         {
-            throw new NotImplementedException();
+            Database.CreateQuery("SELECT * FROM REQ_ETY_CMM WHERE ETY_NM = 'CUS_REQ' AND ETY_KEY_I = @CUS_REQ_I");
+            NewQuery.AddParameter(customerRequest, "@CUS_REQ_I");
+            dataTable = Database.RunSelect(NewQuery);
+            return CommentHydrater.Hydrate(dataTable);
         }
-        public CommentVO GetCommentsByStop(CommentVO Comment)
+        public IEnumerable<CommentVO> GetCommentsByStop(StopVO Stop)
         {
-            throw new NotImplementedException();
+            Database.CreateQuery("SELECT * FROM REQ_ETY_CMM WHERE ETY_NM = 'REQ_ETY_OGN' AND ETY_KEY_I = @REQ_ETY_OGN_I");
+            NewQuery.AddParameter(Stop, "@REQ_ETY_OGN_I");
+            dataTable = Database.RunSelect(NewQuery);
+            return CommentHydrater.Hydrate(dataTable);
         }
     }
 }
